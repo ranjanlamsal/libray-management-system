@@ -1,3 +1,18 @@
+/*
+ *
+ * File   : head.h
+ *
+ * Author : Ranjan Lamsal
+ * Date   : 17th August 2021
+ * Partner: I worked alone
+ * Course : Computer Engineering 101
+ *
+ * Summary of File:
+ *
+ *   This file contains all the defination of data required in file home.c
+ */
+  
+
 #define MAX_YR 9999
 #define MIN_YR 2000
 #define MAX_SIZE_USER_NAME 30
