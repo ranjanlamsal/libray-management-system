@@ -1,3 +1,15 @@
+/**
+  * File:   home.c
+  *
+  * Author:  Ranjan Lamsal
+  * Date:     17th August 2021
+  * Partner:  I worked alone
+  * Course:   Computer Engineering 101
+  *
+  * Summary of File:
+  *
+  *   This file contains program that lets user to add, search, edit, view, and delete book.
+  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -25,6 +37,16 @@ typedef struct BooksInfo // to call in program
     Date bookIssueDate;           // declare the integer data type
 } BooksInfo;
 
+
+/**
+  *
+  * The clear() function clears the interface
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void clear()
 {
 #ifdef _WIN32 //identifying the os of user and clearing the screen accordingly
@@ -34,9 +56,19 @@ void clear()
 #endif
 }
 
+
+/**
+  *
+  * The isValidDate() function checks wheter the date inputed is valid or not
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 int isValidDate(Date *validDate)
 {
-    //check range of year,month and day
+    //checking range of year,month and day
     if (validDate->yyyy > MAX_YR ||
         validDate->yyyy < MIN_YR)
         return 0;
@@ -47,11 +79,21 @@ int isValidDate(Date *validDate)
     return 1;
 }
 
+
+/**
+  *
+  * The printCenter() function displays the values at the distance of 38 units from left side of display
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void printCenter(const char *message)
 {
     int len = 0;
     int pos = 0;
-    //calculate how many space need to print
+    //calculate how many space need to print to left side of display
     len = (78 - strlen(message)) / 2;
     printf("\t\t\t");
     for (pos = 0; pos < len; pos++)
@@ -63,14 +105,34 @@ void printCenter(const char *message)
     printf("%s", message);
 }
 
+
+/**
+  *
+  * The key() function allows user to move to next interface
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void key()
 {
     char w;
     printCenter("Press any key to continue...\n\n");
     scanf("%c", &w);
-    mainmenu();
+    mainmenu(); //returning to mainmenu
 }
 
+
+/**
+  *
+  * The head() function displays a message in a decorative way
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void head(const char *message)
 {
     printf("\n\t\t\t############---------------------------------------------------############\n");
@@ -78,6 +140,16 @@ void head(const char *message)
     printf("\n\t\t\t############---------------------------------------------------############\n\n");
 }
 
+
+/**
+  *
+  * The wewlcome() function displays welcome message in decorative way
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void welcome()
 {
     printf("\n\n\n\n\n");
@@ -93,9 +165,19 @@ void welcome()
     key();
 }
 
+
+/**
+    *
+    * The add_book() function adds books with it's detail in a file.
+    *
+    * Parameters   : no parameter
+    *
+    * Return Value : null
+    *
+    */
 void add_book()
 {
-    clear();
+    clear(); //clearing interface
     int days;
     int status = 0;
     BooksInfo addBooksInfo = {0};
@@ -139,6 +221,17 @@ void add_book()
     key();
 }
 
+
+/**
+  *
+  * The search_book() function search the book in given file and 
+  *displays details of desired book.
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void search_book()
 {
     clear();
@@ -180,6 +273,15 @@ void search_book()
 }
 
 
+/**
+  *
+  * The view_Books() function displays details of all books in given file.
+  *
+  * Parameters   : no parameter 
+  *
+  * Return Value : null
+  *
+  */
 void view_Books()
 {
     int is_found = 0;
@@ -209,6 +311,16 @@ void view_Books()
     key();
 }
 
+
+/**
+  *
+  * The delete_Boook() function deletes all the details of a particular book from the given file.
+  *
+  * Parameters   : no parameter
+  *
+  * Return Value : null
+  *
+  */
 void delete_Book()
 {
     int is_found = 0, bookDelete = 0;
@@ -261,6 +373,16 @@ void delete_Book()
     key();
 }
 
+
+/**
+    *
+    * The edit_book() function allows user to edit details of a book stored in the given file.
+    *
+    * Parameters   : no parameter
+    *
+    * Return Value : null
+    *
+    */
 void edit_book()
 {
     int is_found = 0, book_Edit_id = 0, book_id;
@@ -337,6 +459,17 @@ void edit_book()
     key();
 }
 
+
+/**
+  *
+  *The mainmenu() function allows user to perform all the comand of the file 
+  *creating a interface
+  *
+  *Parameters   : No parameters
+  *
+  *Return value : Null
+  *
+  */
 void mainmenu()
 {
     int choice = 0;
@@ -385,8 +518,8 @@ void mainmenu()
         default:
             printf("\n\n\n\t\t\tINVALID INPUT!!! Try again...");
             key();
-        }                  //Switch Ended
-    } while (choice != 0); //Loop Ended
+        }
+    } while (choice != 0);
 }
 
 int main()
